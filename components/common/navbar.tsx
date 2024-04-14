@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { AvatarImage, Avatar } from '@/components/ui/avatar';
 
 import { SiLinktree } from 'react-icons/si';
+import { HiBolt } from 'react-icons/hi2';
+import { SlShare } from 'react-icons/sl';
+import { DropdownMenuDemo } from '@/components/common/menu';
 
 export const Navbar = () => {
   return (
-    <nav className='bg-white shadow '>
-      <div className='max-w-7xl mx-auto px-2 sm:px-4 lg:px-1'>
+    <nav className='bg-white shadow rounded-full mx-8 mt-5 '>
+      <div className='px-2 sm:px-4 lg:px-1 mx-7'>
         <div className='flex justify-between h-16'>
           <div className='flex px-2 lg:px-0'>
             <div className='flex-shrink-0 flex items-center'>
@@ -19,28 +21,28 @@ export const Navbar = () => {
                 href='#'
               >
                 <LinkIcon className='mr-3 h-5 w-5 text-gray-400' />
-                Links
+                <p className='font-bold'>Links</p>
               </Link>
               <Link
                 className='inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-900 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out'
                 href='#'
               >
                 <ViewIcon className='mr-3 h-5 w-5 text-gray-400' />
-                Appearance
+                <p className='font-semibold'>Appearance</p>
               </Link>
               <Link
                 className='inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-900 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out'
                 href='#'
               >
                 <PieChartIcon className='mr-3 h-5 w-5 text-gray-400' />
-                Analytics
+                <p className='font-semibold'>Analytics</p>
               </Link>
               <Link
                 className='inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-900 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out'
                 href='#'
               >
                 <SettingsIcon className='mr-3 h-5 w-5 text-gray-400' />
-                Settings
+                <p className='font-semibold'>Settings</p>
               </Link>
             </div>
           </div>
@@ -50,20 +52,15 @@ export const Navbar = () => {
             </Button>
           </div>
           <div className='hidden lg:flex lg:items-center lg:space-x-4'>
-            <Button className='flex-shrink-0 bg-purple-600 text-white text-sm px-4 py-2 border border-transparent rounded-md hover:bg-purple-500 focus:outline-none focus:border-purple-700 focus:shadow-outline-purple active:bg-purple-700 transition duration-150 ease-in-out'>
-              <FlashlightIcon className='mr-2 h-4 w-4' />
+            <Button className='flex-shrink-0 bg-neutral-200 text-gray-900 text-base font-bold px-4 py-2 border border-transparent rounded-full hover:bg-zinc-300 active:bg-zinc-300 transition duration-150 ease-in-out'>
+              <HiBolt className='mr-2' />
               Try Pro for free
             </Button>
-            <Button className='flex-shrink-0 border border-gray-300 text-gray-700 text-sm px-4 py-2 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out'>
-              <ShareIcon className='mr-2 h-4 w-4' />
+            <Button className='flex-shrink-0 border border-gray-300 bg-white text-gray-900 text-base font-bold px-4 py-2 rounded-full hover:bg-zinc-200 transition duration-150 ease-in-out'>
+              <SlShare className='mr-2' />
               Share
             </Button>
-            <Avatar>
-              <AvatarImage
-                alt='User avatar'
-                src='/placeholder.svg?height=32&width=32'
-              />
-            </Avatar>
+            <DropdownMenuDemo />
           </div>
         </div>
       </div>
