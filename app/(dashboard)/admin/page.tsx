@@ -1,6 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Info, Plus } from 'lucide-react';
+import { GripVertical, Info, Plus } from 'lucide-react';
 
 import {
   Card,
@@ -10,6 +12,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+
+import { GoGrabber } from 'react-icons/go';
 
 const Admin = () => {
   return (
@@ -45,18 +49,25 @@ const Admin = () => {
           </Button>
 
           {/* List of Social Links */}
-          <Card className='w-[350px] max-w-2xl w-9/12 mt-10 rounded-3xl'>
-            <CardHeader>
-              <CardTitle>Instagram</CardTitle>
-              <CardDescription>
-                https://www.instagram.com/jawadur_rahim{' '}
-              </CardDescription>
-            </CardHeader>
-            <CardContent></CardContent>
-            <CardFooter className='flex justify-between'>
-              <Button variant='outline'>Cancel</Button>
-              <Button>Deploy</Button>
-            </CardFooter>
+          <Card className='w-[450px] max-w-2xl w-9/12 mt-10 rounded-3xl px-4 py-6'>
+            <div className='flex flex-auto gap-4'>
+              <div className='flex-none my-auto'>
+                <GoGrabber size={24} />
+              </div>
+              <div className='grow'>
+                <CardHeader>
+                  <CardTitle>Instagram</CardTitle>
+                  <CardDescription>
+                    https://www.instagram.com/jawadur_rahim{' '}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent></CardContent>
+                <CardFooter className='flex justify-between'>
+                  <Button variant='outline'>Cancel</Button>
+                  <Button>Deploy</Button>
+                </CardFooter>
+              </div>
+            </div>
           </Card>
         </div>
       </div>
