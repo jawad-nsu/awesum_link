@@ -1,6 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
+
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
 // icons
 import {
@@ -26,8 +29,40 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { URL } from 'url';
+
+// constants
+const initialStateTodos = [
+  {
+    id: 1,
+    title: 'Instagram',
+    completed: false,
+  },
+  {
+    id: 2,
+    title: 'Thread',
+    completed: false,
+  },
+  {
+    id: 3,
+    title: 'Twitter',
+    completed: true,
+  },
+];
 
 const Admin = () => {
+  const [todos, setTodos] = useState(initialStateTodos);
+
+  const handleDragEnd = (result: any) => {
+    console.log(result);
+    if (!result.destination) return;
+    const startIndex = result.source.index;
+    const endIndex = result.destination.index;
+    const copyTodos = [...todos];
+    const [reorderTodo] = copyTodos.splice(startIndex, 1);
+    copyTodos.splice(endIndex, 0, reorderTodo);
+    setTodos(copyTodos);
+  };
   return (
     <div className='grid grid-cols-1 md:grid-cols-7'>
       <div className='col-span-5 p-6 bg-inherit'>
@@ -62,173 +97,223 @@ const Admin = () => {
           </Button>
 
           {/* List of Social Links */}
-          <Card className='w-[350px] max-w-2xl w-9/12 mt-10 rounded-3xl px-2'>
-            <div className='flex flex-auto gap-4'>
-              <div className='flex-none my-auto'>
-                <GoGrabber size={24} />
-              </div>
-              <div className='grow'>
-                {/* link and toggle */}
-                <div className='flex px-6 pt-4 justify-between'>
-                  {/* link */}
-                  <div className='flex flex-col space-y-1.5'>
-                    <h5 className='font-bold'>Instagram</h5>
-                    <h6 className='font-semibold tracking-tight truncate'>
-                      https://www.instagram.com/jawadur_rahim
-                    </h6>
-                  </div>
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <Droppable droppableId='todos'>
+              {(droppableProvider) => (
+                <ul
+                  className='max-w-2xl w-9/12'
+                  ref={droppableProvider.innerRef}
+                  {...droppableProvider.droppableProps}
+                >
+                  {todos.map((todo, index) => (
+                    <Draggable
+                      index={index}
+                      key={todo.id}
+                      draggableId={`${todo.id}`}
+                    >
+                      {(draggableProvider) => (
+                        <Card
+                          className='mt-5 rounded-3xl px-2'
+                          ref={draggableProvider.innerRef}
+                          {...draggableProvider.draggableProps}
+                        >
+                          <div className='flex flex-auto gap-4'>
+                            <div
+                              className='flex-none my-auto'
+                              {...draggableProvider.dragHandleProps}
+                            >
+                              <GoGrabber size={24} />
+                            </div>
+                            <div className='grow'>
+                              {/* link and toggle */}
+                              <div className='flex px-6 pt-4 justify-between'>
+                                {/* link */}
+                                <div className='flex flex-col space-y-1.5'>
+                                  <h5 className='font-bold'>{todo.title}</h5>
+                                  <h6 className='font-semibold tracking-tight truncate'>
+                                    https://www.instagram.com/jawadur_rahim
+                                  </h6>
+                                </div>
 
-                  {/* toggle and share */}
-                  <div className='flex space-x-3 items-center'>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Upload
-                            size={20}
-                            strokeWidth={1}
-                            color='#4b5563'
-                            className='cursor-pointer'
-                          />
-                        </TooltipTrigger>
-                        <TooltipContent className='bg-black'>
-                          <p className=' text-white font-semibold'>
-                            <h6>Share this link now</h6>
-                          </p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <Switch />
-                  </div>
-                </div>
+                                {/* toggle and share */}
+                                <div className='flex space-x-3 items-center'>
+                                  <TooltipProvider>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <Upload
+                                          size={20}
+                                          strokeWidth={1}
+                                          color='#4b5563'
+                                          className='cursor-pointer'
+                                        />
+                                      </TooltipTrigger>
+                                      <TooltipContent className='bg-black'>
+                                        <p className='text-white font-semibold'>
+                                          <h6>Share this link now</h6>
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                  <Switch />
+                                </div>
+                              </div>
 
-                {/* social and delete icons */}
-                <div className='flex justify-between px-9 pb-5 pt-5'>
-                  {/* social */}
-                  <div className='flex space-x-6'>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            width='24'
-                            height='24'
-                            viewBox='0 0 24 24'
-                            fill='none'
-                            stroke='currentColor'
-                            stroke-width='1'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                            className='lucide lucide-instagram cursor-pointer'
-                          >
-                            <rect
-                              width='20'
-                              height='20'
-                              x='2'
-                              y='2'
-                              rx='5'
-                              ry='5'
-                            />
-                            <path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z' />
-                            <line x1='17.5' x2='17.51' y1='6.5' y2='6.5' />
-                          </svg>
-                        </TooltipTrigger>
-                        <TooltipContent className='bg-black'>
-                          <p className=' text-white font-semibold'>
-                            <h6>Instagram Profile Link</h6>
-                          </p>
-                        </TooltipContent>
-                      </Tooltip>
+                              {/* social and delete icons */}
+                              <div className='flex justify-between px-9 pb-5 pt-5'>
+                                {/* social */}
+                                <div className='flex space-x-6'>
+                                  <TooltipProvider>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <svg
+                                          xmlns='http://www.w3.org/2000/svg'
+                                          width='24'
+                                          height='24'
+                                          viewBox='0 0 24 24'
+                                          fill='none'
+                                          stroke='currentColor'
+                                          strokeWidth='1'
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
+                                          className='lucide lucide-instagram cursor-pointer'
+                                        >
+                                          <rect
+                                            width='20'
+                                            height='20'
+                                            x='2'
+                                            y='2'
+                                            rx='5'
+                                            ry='5'
+                                          />
+                                          <path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z' />
+                                          <line
+                                            x1='17.5'
+                                            x2='17.51'
+                                            y1='6.5'
+                                            y2='6.5'
+                                          />
+                                        </svg>
+                                      </TooltipTrigger>
+                                      <TooltipContent className='bg-black'>
+                                        <p className=' text-white font-semibold'>
+                                          <h6>Instagram Profile Link</h6>
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
 
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <svg
-                            fill='none'
-                            stroke='currentColor'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                            viewBox='0 0 24 24'
-                            className='h-5 w-5 stroke-1 cursor-pointer'
-                          >
-                            <path stroke='none' d='M0 0h24v24H0z' />
-                            <path d='M12 21V8a4 4 0 10-4 4h13' />
-                            <path d='M17 16l4-4-4-4' />
-                          </svg>
-                        </TooltipTrigger>
-                        <TooltipContent className='bg-black'>
-                          <p className=' text-white font-semibold'>Redirect</p>
-                        </TooltipContent>
-                      </Tooltip>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <svg
+                                          fill='none'
+                                          stroke='currentColor'
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
+                                          viewBox='0 0 24 24'
+                                          className='h-5 w-5 stroke-1 cursor-pointer'
+                                        >
+                                          <path
+                                            stroke='none'
+                                            d='M0 0h24v24H0z'
+                                          />
+                                          <path d='M12 21V8a4 4 0 10-4 4h13' />
+                                          <path d='M17 16l4-4-4-4' />
+                                        </svg>
+                                      </TooltipTrigger>
+                                      <TooltipContent className='bg-black'>
+                                        <p className=' text-white font-semibold'>
+                                          Redirect
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
 
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Image className='h-5 w-5 stroke-1 cursor-pointer' />
-                        </TooltipTrigger>
-                        <TooltipContent className='bg-black'>
-                          <p className=' text-white font-semibold'>Thumbnail</p>
-                        </TooltipContent>
-                      </Tooltip>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <Image className='h-5 w-5 stroke-1 cursor-pointer' />
+                                      </TooltipTrigger>
+                                      <TooltipContent className='bg-black'>
+                                        <p className=' text-white font-semibold'>
+                                          Thumbnail
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
 
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Star className='h-5 w-5 stroke-1 cursor-pointer' />
-                        </TooltipTrigger>
-                        <TooltipContent className='bg-black'>
-                          <p className=' text-white font-semibold'>
-                            Prioritize
-                          </p>
-                        </TooltipContent>
-                      </Tooltip>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <Star className='h-5 w-5 stroke-1 cursor-pointer' />
+                                      </TooltipTrigger>
+                                      <TooltipContent className='bg-black'>
+                                        <p className=' text-white font-semibold'>
+                                          Prioritize
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
 
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <CalendarCheck2 className='h-5 w-5 stroke-1 cursor-pointer' />
-                        </TooltipTrigger>
-                        <TooltipContent className='bg-black'>
-                          <p className=' text-white font-semibold'>Schedule</p>
-                        </TooltipContent>
-                      </Tooltip>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <CalendarCheck2 className='h-5 w-5 stroke-1 cursor-pointer' />
+                                      </TooltipTrigger>
+                                      <TooltipContent className='bg-black'>
+                                        <p className=' text-white font-semibold'>
+                                          Schedule
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
 
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <LockKeyhole className='h-5 w-5 stroke-1 cursor-pointer' />
-                        </TooltipTrigger>
-                        <TooltipContent className='bg-black'>
-                          <p className=' text-white font-semibold'>Lock</p>
-                        </TooltipContent>
-                      </Tooltip>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <LockKeyhole className='h-5 w-5 stroke-1 cursor-pointer' />
+                                      </TooltipTrigger>
+                                      <TooltipContent className='bg-black'>
+                                        <p className=' text-white font-semibold'>
+                                          Lock
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
 
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <BarChart className='h-5 w-5 stroke-1 cursor-pointer' />
-                        </TooltipTrigger>
-                        <TooltipContent className='bg-black'>
-                          <p className=' text-white font-semibold'>Analytics</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                  {/* delete */}
-                  <div className=''>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Trash2
-                            size={18}
-                            strokeWidth={1}
-                            color='#000101'
-                            className='cursor-pointer'
-                          />
-                        </TooltipTrigger>
-                        <TooltipContent className='bg-black'>
-                          <p className=' text-white font-semibold'>Delete</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Card>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <BarChart className='h-5 w-5 stroke-1 cursor-pointer' />
+                                      </TooltipTrigger>
+                                      <TooltipContent className='bg-black'>
+                                        <p className=' text-white font-semibold'>
+                                          Analytics
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                </div>
+                                {/* delete */}
+                                <div className=''>
+                                  <TooltipProvider>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <Trash2
+                                          size={18}
+                                          strokeWidth={1}
+                                          color='#000101'
+                                          className='cursor-pointer'
+                                        />
+                                      </TooltipTrigger>
+                                      <TooltipContent className='bg-black'>
+                                        <p className=' text-white font-semibold'>
+                                          Delete
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Card>
+                      )}
+                    </Draggable>
+                  ))}
+                  {droppableProvider.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>
 
