@@ -321,7 +321,7 @@ const Admin = () => {
       </div>
 
       {/* Mobile Preview */}
-      <div className='hidden md:grid col-span-2 m-auto overflow-y-auto min-w-24'>
+      <div className='hidden md:grid col-span-2 m-auto'>
         <MobilePreview />
       </div>
     </div>
