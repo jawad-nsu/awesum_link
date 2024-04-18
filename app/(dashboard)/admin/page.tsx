@@ -18,9 +18,6 @@ import {
   BarChart,
 } from 'lucide-react';
 import { GoGrabber } from 'react-icons/go';
-import { BsTwitterX } from 'react-icons/bs';
-import { BsThreads } from 'react-icons/bs';
-import { SiLinktree } from 'react-icons/si';
 
 // shadcn ui
 import { Button } from '@/components/ui/button';
@@ -35,6 +32,7 @@ import {
 
 //dnd
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import MobilePreview from '@/components/admin/page';
 
 // constants
 const initialStateTodos = [
@@ -323,42 +321,8 @@ const Admin = () => {
       </div>
 
       {/* Mobile Preview */}
-      <div className='hidden md:grid col-span-2 m-auto'>
-        <div className='flex flex-col items-center max-w-56 border-8 rounded-lg border-black bg-cyan-600'>
-          <Img
-            src='/next.svg'
-            width={200}
-            height={100}
-            alt='Picture of the author'
-            className='rounded-full'
-          />
-          <h4>Jawad Rahim </h4>
-          <p>IndieHacker in making</p>
-          <div className='flex space-x-2'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='1'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              className='lucide lucide-instagram cursor-pointer'
-            >
-              <rect width='20' height='20' x='2' y='2' rx='5' ry='5' />
-              <path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z' />
-              <line x1='17.5' x2='17.51' y1='6.5' y2='6.5' />
-            </svg>
-            <BsTwitterX className='h-5 w-5' />
-            <BsThreads className='h-5 w-5' />
-          </div>
-            <div className='flex'>
-              <h3>Linktree</h3>
-              <SiLinktree />
-            </div>
-        </div>
+      <div className='hidden md:grid col-span-2 m-auto overflow-y-auto min-w-24'>
+        <MobilePreview />
       </div>
     </div>
   );
