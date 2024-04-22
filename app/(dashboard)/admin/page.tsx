@@ -32,7 +32,7 @@ import {
 
 //dnd
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import MobilePreview from '@/components/admin/page';
+import MobilePreview from '@/components/admin/mobile-preview';
 
 // constants
 const initialStateTodos = [
@@ -93,9 +93,9 @@ const Admin = () => {
           </div>
         </div>
 
-        <div className='grid place-items-center'>
+        <div className='flex flex-col max-w-2xl m-auto'>
           {/* Add Link Btn */}
-          <Button className='mt-10 max-w-2xl w-9/12 place-items-center py-6 bg-purple-700 rounded-full font-bold text-lg hover:bg-purple-800'>
+          <Button className='mt-10 py-6 bg-purple-700 rounded-full font-bold text-lg hover:bg-purple-800'>
             <Plus className='mr-2 h-5 w-5' /> Add link
           </Button>
 
@@ -104,7 +104,7 @@ const Admin = () => {
             <Droppable droppableId='todos'>
               {(droppableProvider) => (
                 <ul
-                  className='max-w-2xl w-9/12'
+                  className=' '
                   ref={droppableProvider.innerRef}
                   {...droppableProvider.droppableProps}
                 >
@@ -129,11 +129,11 @@ const Admin = () => {
                             </div>
                             <div className='grow'>
                               {/* link and toggle */}
-                              <div className='flex px-6 pt-4 justify-between'>
+                              <div className='flex md:px-6 pt-4 justify-between '>
                                 {/* link */}
                                 <div className='flex flex-col space-y-1.5'>
                                   <h5 className='font-bold'>{todo.title}</h5>
-                                  <h6 className='font-semibold tracking-tight truncate'>
+                                  <h6 className='w-44 md:w-auto font-semibold tracking-tight truncate'>
                                     https://www.instagram.com/jawadur_rahim
                                   </h6>
                                 </div>
@@ -162,9 +162,9 @@ const Admin = () => {
                               </div>
 
                               {/* social and delete icons */}
-                              <div className='flex justify-between px-9 pb-5 pt-5'>
+                              <div className='flex justify-between md:px-9 pb-5 pt-5'>
                                 {/* social */}
-                                <div className='flex space-x-6'>
+                                <div className='flex space-x-2 md:space-x-6 '>
                                   <TooltipProvider>
                                     <Tooltip>
                                       <TooltipTrigger asChild>
