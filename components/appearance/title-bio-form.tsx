@@ -81,7 +81,10 @@ const TitleBioForm = () => {
               </FormItem>
             )}
           />
-          <Button className='bg-purple-700 rounded-full' type='submit'>
+          <Button
+            className='py-6 bg-purple-700 rounded-full md:text-lg font-bold hover:bg-purple-800'
+            type='submit'
+          >
             Submit
           </Button>
         </form>
