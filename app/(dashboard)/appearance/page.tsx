@@ -9,10 +9,10 @@ import { Button } from '@/components/ui/button';
 const Appearance = () => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-7'>
-      <div className='col-span-5 p-6 bg-inherit gap-y-0'>
+      <div className='col-span-5 p-6 bg-inherit'>
         {/* Profile */}
-        <div className='max-w-2xl mx-auto px-4 '>
-          <h3 className='font-bold text-lg'>Profile</h3>
+        <div className='max-w-4xl mx-auto px-4 space-y-4'>
+          <h3 className='font-bold text-xl'>Profile</h3>
           <div className='md:w-9/12 py-6 rounded-3xl bg-white space-y-8'>
             {/* Profile Image */}
             <div className='flex space-x-6 p-5'>
@@ -32,10 +32,8 @@ const Appearance = () => {
             {/* Title & Bio */}
             <TitleBioForm />
           </div>
-        </div>
 
-        {/* Upgrade CTA */}
-        <div className='max-w-2xl mx-auto px-4 bg-lime-300'>
+          {/* Upgrade CTA */}
           <UpgradeCta />
         </div>
       </div>
