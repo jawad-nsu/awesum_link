@@ -12,7 +12,7 @@ const UpgradeCta = () => {
 
       <div className='flex space-x-3 '>
         {/* Text & Button */}
-        <div className='w-3/6'>
+        <div className='w-full md:w-3/6'>
           <p className='font-medium tracking-tight text-opacity-75 text-green-950 mt-3'>
             Transform your Linktree with Pro. Cancel anytime.
           </p>
@@ -36,7 +36,7 @@ const UpgradeCta = () => {
           </p>
         </div>
         {/* Image */}
-        <div className='hidden md:flex w-3/6  items-start justify-center'>
+        <div className='hidden md:flex md:w-3/6  items-start justify-center'>
           <Image
             src='/appearance/demo.png'
             width={350}
