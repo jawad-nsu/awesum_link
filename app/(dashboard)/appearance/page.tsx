@@ -1,8 +1,9 @@
 // Custom components
 import MobilePreview from '@/components/admin/mobile-preview';
-import Themes from '@/components/appearance/themes';
 import TitleBioForm from '@/components/appearance/title-bio-form';
 import UpgradeCta from '@/components/appearance/upgrade-cta';
+import Themes from '@/components/appearance/themes';
+import LogoUpgradeCta from '@/components/appearance/logo-upgrade-cta';
 
 // Shadcn-ui
 import { Button } from '@/components/ui/button';
@@ -40,6 +41,9 @@ const Appearance = () => {
 
           {/* Themes */}
           <Themes />
+
+          {/* Hide Linktree Logo - CTA */}
+          <LogoUpgradeCta />
         </div>
       </div>
 
