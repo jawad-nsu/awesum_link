@@ -1,9 +1,9 @@
-import { DateRangePicker } from '@/components/common/date-range-picker';
+import { DatePickerWithRange } from '@/components/common/date-range-picker';
 import { cn } from '@/lib/utils';
 
 const Analytics = () => {
   return (
-    <div className='p-2'>
+    <div className='p-2 grid place-items-center gap-6'>
       {/* Lifetime Analytics */}
       <div className='w-11/12 mx-auto p-6 flex flex-col items-center bg-white rounded-xl space-y-8'>
         <h3 className='text-center font-bold text-xl'>Lifetime Analytics</h3>
@@ -17,9 +17,11 @@ const Analytics = () => {
       </div>
 
       {/* Date Range Picker */}
-      <div className='text-center m-5'>
-        <DateRangePicker />
+      <div className=''>
+        <DatePickerWithRange />
       </div>
+
+      {/* Upgrade CTA */}
     </div>
   );
 };
