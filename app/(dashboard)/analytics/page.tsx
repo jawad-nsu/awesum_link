@@ -1,3 +1,4 @@
+import AnalyticsUpgradeCta from '@/components/analytics/analytics-upgrade-cta';
 import { DatePickerWithRange } from '@/components/common/date-range-picker';
 import { cn } from '@/lib/utils';
 
@@ -17,11 +18,10 @@ const Analytics = () => {
       </div>
 
       {/* Date Range Picker */}
-      <div className=''>
-        <DatePickerWithRange />
-      </div>
+      <DatePickerWithRange />
 
       {/* Upgrade CTA */}
+      <AnalyticsUpgradeCta />
     </div>
   );
 };
