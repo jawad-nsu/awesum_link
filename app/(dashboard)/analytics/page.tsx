@@ -1,6 +1,21 @@
+// utils
+import { cn } from '@/lib/utils';
+
+// Custom Components
+import Activity from '@/components/analytics/activity';
 import AnalyticsUpgradeCta from '@/components/analytics/analytics-upgrade-cta';
 import { DatePickerWithRange } from '@/components/common/date-range-picker';
-import { cn } from '@/lib/utils';
+
+// icons
+import { CircleHelp } from 'lucide-react';
+
+// shadcn
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 const Analytics = () => {
   return (
@@ -21,7 +36,39 @@ const Analytics = () => {
       <DatePickerWithRange />
 
       {/* Upgrade CTA */}
-      <AnalyticsUpgradeCta />
+      <div className='my-6'>
+        <AnalyticsUpgradeCta />
+      </div>
+
+      <div className='space-y-4 mx-2'>
+        <div className='flex space-x-2 justify-start items-center'>
+          <h3 className='text-xl font-bold'>Activity</h3>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <CircleHelp
+                  size={18}
+                  strokeWidth={1.5}
+                  className='cursor-pointer'
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Link Activity</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+
+        {/* numbers */}
+        <div>
+          <div className='flex flex-wrap space-x-16 items-center justify-evenly bg-white rounded-lg p-4'>
+            {stats_chart.map((props) => (
+              <Stat key={props.name} {...props} />
+            ))}
+          </div>
+        </div>
+        <Activity />
+      </div>
     </div>
   );
 };
@@ -62,6 +109,19 @@ const stats = [
   {
     name: 'Subscribers',
     color: 'bg-yellow-500',
+    value: 0,
+  },
+];
+
+const stats_chart = [
+  {
+    name: 'Views',
+    color: 'bg-green-500',
+    value: 2,
+  },
+  {
+    name: 'Clicks',
+    color: 'bg-purple-500',
     value: 0,
   },
 ];
