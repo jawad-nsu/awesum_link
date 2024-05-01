@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 
 const AnalyticsUpgradeCta = () => {
   return (
-    <div className='max-w-[40rem] p-8 rounded-3xl bg-[#512275]'>
+    <div className='max-w-[40rem] p-8 rounded-3xl bg-[#512275] mx-2'>
       <h3 className='font-black text-2xl text-white'>
         Unlock powerful insights
       </h3>
@@ -36,7 +36,7 @@ const AnalyticsUpgradeCta = () => {
           </p>
         </div>
         {/* Image */}
-        <div className='hidden md:flex md:w-3/6  items-start justify-center'>
+        <div className='hidden md:flex md:w-3/6 items-start justify-center'>
           <Image
             src='/analytics/upgrade-banner.png'
             width={350}
