@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import Activity from '@/components/analytics/activity';
 import AnalyticsUpgradeCta from '@/components/analytics/analytics-upgrade-cta';
 import { DatePickerWithRange } from '@/components/common/date-range-picker';
+import Map from '@/components/analytics/map';
 
 // icons
 import { CircleHelp } from 'lucide-react';
@@ -40,7 +41,8 @@ const Analytics = () => {
         <AnalyticsUpgradeCta />
       </div>
 
-      <div className='space-y-4 mx-2'>
+      {/* link activity - chart */}
+      <div className='mx-2'>
         <div className='flex space-x-2 justify-start items-center'>
           <h3 className='text-xl font-bold'>Activity</h3>
           <TooltipProvider>
@@ -59,8 +61,7 @@ const Analytics = () => {
           </TooltipProvider>
         </div>
 
-        {/* link activity - chart */}
-        <div>
+        <div className='my-4'>
           <div className='flex flex-wrap space-x-16 items-center justify-evenly bg-white rounded-lg p-4'>
             {stats_chart.map((props) => (
               <Stat key={props.name} {...props} />
@@ -70,25 +71,24 @@ const Analytics = () => {
         <Activity />
 
         {/* World Map view */}
-        <div className='space-y-4 mx-2 my-6'>
-          <div className='flex space-x-2 justify-start items-center'>
-            <h3 className='text-xl font-bold'>Top Locations</h3>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <CircleHelp
-                    size={18}
-                    strokeWidth={1.5}
-                    className='cursor-pointer'
-                  />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Link Activity By Region</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
+        <div className='flex space-x-2 justify-start items-center mt-12 mb-4'>
+          <h3 className='text-xl font-bold'>Top Locations</h3>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <CircleHelp
+                  size={18}
+                  strokeWidth={1.5}
+                  className='cursor-pointer'
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Link Activity By Region</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
+        <Map />
       </div>
     </div>
   );
