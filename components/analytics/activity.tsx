@@ -11,7 +11,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  PolarGrid,
 } from 'recharts';
 
 const data = [
