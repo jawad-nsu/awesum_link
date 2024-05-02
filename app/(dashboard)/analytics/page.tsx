@@ -33,7 +33,7 @@ const Analytics = () => {
       </div>
 
       {/* Date Range Picker */}
-      <DatePickerWithRange />
+      <DatePickerWithRange className='max-w-[40rem] w-11/12 md:w-[40rem] ' />
 
       {/* Upgrade CTA */}
       <div className='my-6'>
@@ -59,7 +59,7 @@ const Analytics = () => {
           </TooltipProvider>
         </div>
 
-        {/* numbers */}
+        {/* link activity - chart */}
         <div>
           <div className='flex flex-wrap space-x-16 items-center justify-evenly bg-white rounded-lg p-4'>
             {stats_chart.map((props) => (
@@ -68,6 +68,27 @@ const Analytics = () => {
           </div>
         </div>
         <Activity />
+
+        {/* World Map view */}
+        <div className='space-y-4 mx-2 my-6'>
+          <div className='flex space-x-2 justify-start items-center'>
+            <h3 className='text-xl font-bold'>Top Locations</h3>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <CircleHelp
+                    size={18}
+                    strokeWidth={1.5}
+                    className='cursor-pointer'
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Link Activity By Region</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        </div>
       </div>
     </div>
   );
