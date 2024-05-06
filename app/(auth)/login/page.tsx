@@ -1,5 +1,6 @@
 import LoginForm from '@/components/auth/login-form';
 import Image from 'next/image';
+import Link from 'next/link';
 import { SiLinktree } from 'react-icons/si';
 
 const Login = () => {
@@ -24,6 +25,18 @@ const Login = () => {
         <div className='px-12 py-4 mx-auto'>
           <LoginForm />
         </div>
+
+        <p className='text-[.95rem]'>
+          <h3 className='text-center text-gray-500'>
+            Don't have an account?{' '}
+            <Link
+              href='/auth/signup'
+              className='text-purple-700 underline tracking-tight'
+            >
+              Sign up
+            </Link>
+          </h3>
+        </p>
       </section>
       {/* Image */}
       <section className='hidden md:grid col-span-1 bg-[#e9c0e9] h-screen place-items-center'>
