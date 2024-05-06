@@ -1,3 +1,4 @@
+import LoginForm from '@/components/auth/login-form';
 import Image from 'next/image';
 import { SiLinktree } from 'react-icons/si';
 
@@ -12,12 +13,16 @@ const Login = () => {
           <SiLinktree size={16} className='text-green-500' />
         </div>
 
-        {/* Form */}
-        <div className='flex flex-col items-center py-14 '>
+        <div className='flex flex-col items-center pt-10 '>
           <h2 className='h2 font-black text-3xl '>Welcome Back</h2>
           <h4 className='text-gray-500 tracking-tight'>
             Log in to your Linktree
           </h4>
+        </div>
+
+        {/* Form */}
+        <div className='px-12 py-4 mx-auto'>
+          <LoginForm />
         </div>
       </section>
       {/* Image */}
