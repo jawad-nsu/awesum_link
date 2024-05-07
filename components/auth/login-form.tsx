@@ -1,4 +1,4 @@
-'use client';
+import Link from 'next/link';
 
 // icons
 import { FcGoogle } from 'react-icons/fc';
@@ -19,11 +19,17 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+
+// Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
+const passwordValidation = new RegExp(
+  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+);
 
 const formSchema = z.object({
-  email: z.string().min(2).max(50),
-  password: z.string().min(8).max(32),
+  email: z.string().email({ message: 'Please enter a valid email address.' }),
+  password: z.string().min(8).max(32).regex(passwordValidation, {
+    message: 'Your password is not valid',
+  }),
 });
 
 const LoginForm = () => {
@@ -86,14 +92,20 @@ const LoginForm = () => {
           />
           <ul className='flex space-x-7 list-disc'>
             <div className=''>
-              <a href='#' className='text-purple-700 underline tracking-tight'>
+              <Link
+                href='#'
+                className='text-purple-700 underline tracking-tight'
+              >
                 Forgot password?
-              </a>
+              </Link>
             </div>
             <li>
-              <a href='#' className='text-purple-700 underline tracking-tight'>
+              <Link
+                href='#'
+                className='text-purple-700 underline tracking-tight'
+              >
                 Forgot username?
-              </a>
+              </Link>
             </li>
           </ul>
           <Button
@@ -107,13 +119,13 @@ const LoginForm = () => {
       <h3 className='text-gray-600 text-center py-2'>OR</h3>
       <div className='flex flex-col space-y-4'>
         <Button
-          className='py-6 bg-white rounded-full md:text-lg font-bold text-black border hover:bg-purple-800'
+          className='py-6 bg-white rounded-full md:text-lg font-bold text-black border hover:bg-gray-100'
           type='submit'
         >
           <FcGoogle className='m-4' /> Continue with Google
         </Button>
         <Button
-          className='py-6 bg-white rounded-full md:text-lg font-bold text-black border hover:bg-purple-800'
+          className='py-6 bg-white rounded-full md:text-lg font-bold text-black border hover:bg-gray-100'
           type='submit'
         >
           <BsApple className='m-4' /> Continue with Apple
