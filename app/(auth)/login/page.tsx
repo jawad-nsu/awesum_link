@@ -1,9 +1,24 @@
-import LoginForm from '@/components/auth/login-form';
+'use client';
+
+import { useState, useEffect } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { LoginForm } from '@/components/auth';
+
 import { SiLinktree } from 'react-icons/si';
 
 const Login = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
   return (
     <div className='grid grid-cols-1 md:grid-cols-3'>
       {/* Auth */}
