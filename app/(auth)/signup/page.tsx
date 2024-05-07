@@ -2,12 +2,9 @@
 
 import { useState, useEffect } from 'react';
 
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { SignupForm } from '@/components/auth';
-
-import { SiLinktree } from 'react-icons/si';
 
 const Signup = () => {
   const [isClient, setIsClient] = useState(false);
