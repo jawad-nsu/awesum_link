@@ -24,7 +24,7 @@ const Signup = () => {
       </div>
 
       {/* Form */}
-      <div className='px-12 py-4 mx-auto'>
+      <div className='px-12 py-4'>
         <SignupForm />
       </div>
 
