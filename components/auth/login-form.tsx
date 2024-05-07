@@ -20,6 +20,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
+import _Form from '@/components/common/form';
+
 // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
 const passwordValidation = new RegExp(
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
@@ -33,89 +35,43 @@ const formSchema = z.object({
 });
 
 const LoginForm = () => {
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
+  const emailPasswordSchema = z.object({
+    email: z.string().email({ message: 'Please enter a valid email address.' }),
+    password: z
+      .string()
+      .min(8)
+      .max(32)
+      .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
+  // Define default values
+  const defaultValues = {
+    email: '',
+    password: '',
+  };
+
+  // Define fields array
+  const fields = [
+    { name: 'email', label: 'Email', placeholder: 'Enter your email' },
+    { name: 'password', label: 'Password', placeholder: 'Enter your password' },
+    // Add more fields as needed
+  ];
+
+  // Define onSubmit function
+  const handleSubmit = (formData: Record<string, string | number>) => {
+    console.log('Form data:', formData);
+    // Handle form submission logic here
+  };
 
   return (
     <div className='p-5 max-w-[35rem] mx-auto'>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8 flex flex-col'
-        >
-          <FormField
-            control={form.control}
-            name='email'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-gray-500'>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder=''
-                    className=' bg-gray-100 border-0'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='password'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-gray-500'>Password</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder=''
-                    className=' bg-gray-100 border-0'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <ul className='flex space-x-7 list-disc'>
-            <div className=''>
-              <Link
-                href='#'
-                className='text-purple-700 underline tracking-tight'
-              >
-                Forgot password?
-              </Link>
-            </div>
-            <li>
-              <Link
-                href='#'
-                className='text-purple-700 underline tracking-tight'
-              >
-                Forgot username?
-              </Link>
-            </li>
-          </ul>
-          <Button
-            className='py-6 bg-purple-700 rounded-full md:text-lg font-bold hover:bg-purple-800'
-            type='submit'
-          >
-            Log in
-          </Button>
-        </form>
-      </Form>
+      <_Form
+        formSchema={emailPasswordSchema}
+        onSubmit={handleSubmit}
+        defaultValues={defaultValues}
+        fields={fields}
+        submitBtnText={'Log in'}
+      />
       <h3 className='text-gray-600 text-center py-2'>OR</h3>
       <div className='flex flex-col space-y-4'>
         <Button
