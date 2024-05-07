@@ -9,26 +9,21 @@ import { Button } from '@/components/ui/button';
 import _Form from './../common/form';
 
 const SignupForm = () => {
-  const emailPasswordSchema = z.object({
+  const emailUsernameSchema = z.object({
     email: z.string().email({ message: 'Please enter a valid email address.' }),
-    password: z
-      .string()
-      .min(8)
-      .max(32)
-      .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),
+    username: z.string().min(1).max(32),
   });
 
   // Define default values
   const defaultValues = {
     email: '',
-    password: '',
+    username: '',
   };
 
   // Define fields array
   const fields = [
     { name: 'email', label: 'Email', placeholder: 'Enter your email' },
-    { name: 'password', label: 'Password', placeholder: 'Enter your password' },
-    // Add more fields as needed
+    { name: 'username', label: 'Username', placeholder: 'Enter your username' },
   ];
 
   // Define onSubmit function
@@ -40,7 +35,7 @@ const SignupForm = () => {
   return (
     <div className='p-5 max-w-[35rem] mx-auto'>
       <_Form
-        formSchema={emailPasswordSchema}
+        formSchema={emailUsernameSchema}
         onSubmit={handleSubmit}
         defaultValues={defaultValues}
         fields={fields}
