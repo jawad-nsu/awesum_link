@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 
 // icons
@@ -21,7 +19,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useState, useEffect } from 'react';
 
 // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
 const passwordValidation = new RegExp(
