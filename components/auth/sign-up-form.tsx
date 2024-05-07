@@ -44,6 +44,7 @@ const SignupForm = () => {
         onSubmit={handleSubmit}
         defaultValues={defaultValues}
         fields={fields}
+        submitBtnText={'Create account'}
       />
       <h3 className='text-gray-600 text-center py-2'>OR</h3>
       <div className='flex flex-col space-y-4'>
