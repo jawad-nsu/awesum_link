@@ -25,10 +25,10 @@ const Password = () => {
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
   );
 
-  const emailUsernameSchema = z.object({
+  const passwordSchema = z.object({
     password: z.string().min(8).max(32).regex(passwordValidation, {
       message:
-        'Your password is not valid, at least one uppercase letter, one lowercase letter, one number and one special character',
+        'Password must contain at least 1 Uppercase letter, 1 lowercase letter, 1 number and 1 special character',
     }),
   });
 
@@ -69,11 +69,11 @@ const Password = () => {
       {/* Input */}
       <div className=' '>
         <_Form
-          formSchema={emailUsernameSchema}
+          formSchema={passwordSchema}
           onSubmit={handleSubmit}
           defaultValues={defaultValues}
           fields={fields}
-          submitBtnText={'Create account'}
+          submitBtnText={'Continue'}
         />
       </div>
     </div>
