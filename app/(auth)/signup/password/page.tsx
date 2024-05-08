@@ -61,7 +61,7 @@ const Password = () => {
       </div>
       <p className='space-y-4'>
         <h1 className='text-3xl font-black'>Enter a password</h1>
-        <h6 className=''>
+        <h6 className='text-gray-500 tracking-tight'>
           Choose a strong password with at least 8 characters
         </h6>
       </p>
