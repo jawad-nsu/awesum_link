@@ -23,6 +23,7 @@ type FormProps<T extends ZodObject<any>> = {
   onSubmit: (formData: Record<string, string | number>) => void;
   defaultValues: Record<string, string | number>;
   fields: { name: string; label: string; placeholder: string }[];
+  submitBtnText: string;
 };
 
 const _Form = ({
@@ -30,6 +31,7 @@ const _Form = ({
   onSubmit,
   defaultValues,
   fields,
+  submitBtnText,
 }: FormProps<any>) => {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -52,12 +54,12 @@ const _Form = ({
             placeholder={placeholder}
           />
         ))}
-        {/* <Button
+        <Button
           className='py-6 bg-purple-700 rounded-full md:text-lg font-bold hover:bg-purple-800'
           type='submit'
         >
-          Log in
-        </Button> */}
+          {submitBtnText}
+        </Button>
       </form>
     </Form>
   );

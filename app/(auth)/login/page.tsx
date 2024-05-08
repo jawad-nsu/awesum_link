@@ -37,7 +37,7 @@ const Login = () => {
         </div>
 
         {/* Form */}
-        <div className='px-12 py-4 mx-auto'>
+        <div className='px-12 py-4'>
           <LoginForm />
         </div>
 
