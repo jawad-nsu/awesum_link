@@ -6,8 +6,9 @@ import _Form from '@/components/common/form';
 import { useState, useEffect } from 'react';
 
 import { categories } from '@/lib/const';
+import { Button } from '@/components/ui/button';
 
-const Password = () => {
+const Personalize = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -17,32 +18,6 @@ const Password = () => {
   if (!isClient) {
     return null;
   }
-
-  // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
-  const passwordValidation = new RegExp(
-    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-  );
-
-  const passwordSchema = z.object({
-    password: z.string().min(8).max(32).regex(passwordValidation, {
-      message:
-        'Password must contain at least 1 Uppercase letter, 1 lowercase letter, 1 number and 1 special character',
-    }),
-  });
-
-  // Define default values
-  const defaultValues = {
-    password: '',
-  };
-
-  // Define fields array
-  const fields = [
-    {
-      name: 'password',
-      label: 'Password',
-      placeholder: 'Enter your password',
-    },
-  ];
 
   // Define onSubmit function
   const handleSubmit = (formData: Record<string, string | number>) => {
@@ -66,23 +41,38 @@ const Password = () => {
           Select one category that best describes your Linktree:
         </h6>
 
-        <Category />
+        {/* Buttons - categories*/}
+        <div className='mt-3'>
+          <Category />
+        </div>
+
+        <Button className='mt-10 w-full rounded-full bg-white text-black font-bold border border-gray-500 hover:bg-purple-600 hover:text-white'>
+          <span>Continue</span>
+        </Button>
       </section>
     </div>
   );
 };
 
-export default Password;
+export default Personalize;
 
 const Category = () => {
   return (
-    <ul className='flex'>
-      {categories.map((category) => (
-        <li key={category.name}>
-          <h6>{category.name}</h6>
-          {/* <h5>{category.icon}</h5> */}
+    <ul className='flex flex-wrap gap-1.5'>
+      {categories.map(({ name, icon }) => (
+        <li key={name}>
+          <Buttons name={name} icon={icon} />
         </li>
       ))}
     </ul>
+  );
+};
+
+const Buttons = ({ name, icon }: { name: string; icon: React.ReactNode }) => {
+  return (
+    <Button className='rounded-full bg-white hover:border-2 hover:bg-white text-black border space-x-2 items-center active:bg-purple-600 active:text-white'>
+      <div>{icon}</div>
+      <h6>{name}</h6>
+    </Button>
   );
 };
