@@ -49,10 +49,7 @@ const Personalize = () => {
 
         {/* Buttons - categories*/}
         <div className='mt-3'>
-          <Category
-            selectedCategories={selectedCategories}
-            toggleCategory={toggleCategory}
-          />
+          <Category {...{ selectedCategories, toggleCategory }} />
         </div>
 
         <Button
@@ -79,12 +76,7 @@ const Category = ({
     <ul className='flex flex-wrap gap-1.5'>
       {categories.map(({ name, icon }) => (
         <li key={name}>
-          <Buttons
-            name={name}
-            icon={icon}
-            selectedCategories={selectedCategories}
-            toggleCategory={toggleCategory}
-          />
+          <Buttons {...{ name, icon, selectedCategories, toggleCategory }} />
         </li>
       ))}
     </ul>
