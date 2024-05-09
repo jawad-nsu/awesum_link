@@ -1,13 +1,11 @@
 'use client';
 
-import { ChevronLeft } from 'lucide-react';
-
 import { z } from 'zod';
-
-import { Button } from '@/components/ui/button';
 
 import _Form from '@/components/common/form';
 import { useState, useEffect } from 'react';
+
+import { categories } from '@/lib/const';
 
 const Password = () => {
   const [isClient, setIsClient] = useState(false);
@@ -52,32 +50,39 @@ const Password = () => {
     // Handle form submission logic here
   };
   return (
-    <div className='max-w-[35rem] mx-auto space-y-6'>
-      <div className=''>
-        <Button className='text-purple-700 font-bold bg-white hover:bg-white p-0 m-0'>
-          <ChevronLeft />
-          Back
-        </Button>
-      </div>
+    <div className='max-w-[35rem] mx-auto my-24'>
       <p className='space-y-4'>
-        <h1 className='text-3xl font-black'>Enter a password</h1>
+        <h1 className='text-5xl font-black tracking-tight'>
+          Tell us about yourself
+        </h1>
         <h6 className='text-gray-500 tracking-tight'>
-          Choose a strong password with at least 8 characters
+          This will personalize your Linktree experience
         </h6>
       </p>
 
       {/* Input */}
-      <div className=' '>
-        <_Form
-          formSchema={passwordSchema}
-          onSubmit={handleSubmit}
-          defaultValues={defaultValues}
-          fields={fields}
-          submitBtnText={'Continue'}
-        />
-      </div>
+      <section className='mt-20'>
+        <h6 className='font-bold'>
+          Select one category that best describes your Linktree:
+        </h6>
+
+        <Category />
+      </section>
     </div>
   );
 };
 
 export default Password;
+
+const Category = () => {
+  return (
+    <ul className='flex'>
+      {categories.map((category) => (
+        <li key={category.name}>
+          <h6>{category.name}</h6>
+          {/* <h5>{category.icon}</h5> */}
+        </li>
+      ))}
+    </ul>
+  );
+};
