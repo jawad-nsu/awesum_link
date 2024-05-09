@@ -69,7 +69,7 @@ const Card = ({
   return (
     <div className='border rounded-2xl'>
       <p className='pt-8 pb-4 px-4'>
-        <div>
+        <div className='flex justify-between'>
           <label
             htmlFor='pricing-starter'
             className='font-extrabold text-xl leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
@@ -78,7 +78,7 @@ const Card = ({
           </label>
           <Checkbox id='pricing-starter' />
         </div>
-        <h6 className='text-xs font-bold tracking-tights'>
+        <h6 className='text-xs font-bold tracking-tights mt-2'>
           For your personal Linktree
         </h6>
       </p>
