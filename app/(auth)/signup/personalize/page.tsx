@@ -5,6 +5,8 @@ import { z } from 'zod';
 import _Form from '@/components/common/form';
 import { useState, useEffect } from 'react';
 
+import { categories } from '@/lib/const';
+
 const Password = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -48,7 +50,7 @@ const Password = () => {
     // Handle form submission logic here
   };
   return (
-    <div className='max-w-[35rem] mx-auto my-24 space-y-6'>
+    <div className='max-w-[35rem] mx-auto my-24'>
       <p className='space-y-4'>
         <h1 className='text-5xl font-black tracking-tight'>
           Tell us about yourself
@@ -59,13 +61,28 @@ const Password = () => {
       </p>
 
       {/* Input */}
-      <section className='mt-5'>
+      <section className='mt-20'>
         <h6 className='font-bold'>
-          Select one category that best describes your Linktree
+          Select one category that best describes your Linktree:
         </h6>
+
+        <Category />
       </section>
     </div>
   );
 };
 
 export default Password;
+
+const Category = () => {
+  return (
+    <ul className='flex'>
+      {categories.map((category) => (
+        <li key={category.name}>
+          <h6>{category.name}</h6>
+          {/* <h5>{category.icon}</h5> */}
+        </li>
+      ))}
+    </ul>
+  );
+};
