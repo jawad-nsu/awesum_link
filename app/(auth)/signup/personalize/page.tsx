@@ -5,19 +5,31 @@ import { useState, useEffect } from 'react';
 import { categories } from '@/lib/const';
 
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const Personalize = () => {
-  const [isClient, setIsClient] = useState(false);
+  const [isClient, setIsClient] = useState<boolean>(false);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsClient(() => true);
   }, []);
 
   if (!isClient) {
     return null;
   }
 
-  const handleSubmit = () => {};
+  // Function to toggle selection status of a category
+  const toggleCategory = (category: string): void => {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories(
+        selectedCategories.filter((cat) => cat !== category)
+      );
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
+  };
+
   return (
     <div className='max-w-[35rem] mx-auto my-24 px-6'>
       <p className='space-y-4'>
@@ -37,10 +49,16 @@ const Personalize = () => {
 
         {/* Buttons - categories*/}
         <div className='mt-3'>
-          <Category />
+          <Category
+            selectedCategories={selectedCategories}
+            toggleCategory={toggleCategory}
+          />
         </div>
 
-        <Button className='mt-6 w-full rounded-full bg-white text-black font-bold border border-gray-500 hover:bg-purple-600 hover:text-white'>
+        <Button
+          onClick={() => console.log(selectedCategories)}
+          className='mt-6 w-full rounded-full bg-white text-black font-bold border border-gray-500 hover:bg-purple-600 hover:text-white'
+        >
           <span>Continue</span>
         </Button>
       </section>
@@ -50,21 +68,48 @@ const Personalize = () => {
 
 export default Personalize;
 
-const Category = () => {
+const Category = ({
+  selectedCategories,
+  toggleCategory,
+}: {
+  selectedCategories: String[];
+  toggleCategory: Function;
+}) => {
   return (
     <ul className='flex flex-wrap gap-1.5'>
       {categories.map(({ name, icon }) => (
         <li key={name}>
-          <Buttons name={name} icon={icon} />
+          <Buttons
+            name={name}
+            icon={icon}
+            selectedCategories={selectedCategories}
+            toggleCategory={toggleCategory}
+          />
         </li>
       ))}
     </ul>
   );
 };
 
-const Buttons = ({ name, icon }: { name: string; icon: React.ReactNode }) => {
+const Buttons = ({
+  name,
+  icon,
+  selectedCategories,
+  toggleCategory,
+}: {
+  name: string;
+  icon: React.ReactNode;
+  selectedCategories: String[];
+  toggleCategory: Function;
+}) => {
   return (
-    <Button className='rounded-full bg-white hover:border-2 hover:bg-white text-black border space-x-2 items-center active:bg-purple-600 active:text-white'>
+    <Button
+      onClick={() => toggleCategory(name)}
+      className={cn(
+        'rounded-full bg-white hover:border-2 hover:bg-white hover:bg-purple-600 hover:text-white text-black border space-x-2 items-center active:bg-purple-600 active:text-white',
+        selectedCategories.includes(name) ? 'bg-purple-600 text-white' : ''
+      )}
+    >
       <div>{icon}</div>
       <h6>{name}</h6>
     </Button>
