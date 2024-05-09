@@ -1,11 +1,9 @@
 'use client';
 
-import { z } from 'zod';
-
-import _Form from '@/components/common/form';
 import { useState, useEffect } from 'react';
 
 import { categories } from '@/lib/const';
+
 import { Button } from '@/components/ui/button';
 
 const Personalize = () => {
@@ -19,13 +17,9 @@ const Personalize = () => {
     return null;
   }
 
-  // Define onSubmit function
-  const handleSubmit = (formData: Record<string, string | number>) => {
-    console.log('Form data:', formData);
-    // Handle form submission logic here
-  };
+  const handleSubmit = () => {};
   return (
-    <div className='max-w-[35rem] mx-auto my-24'>
+    <div className='max-w-[35rem] mx-auto my-24 px-6'>
       <p className='space-y-4'>
         <h1 className='text-5xl font-black tracking-tight'>
           Tell us about yourself
@@ -36,7 +30,7 @@ const Personalize = () => {
       </p>
 
       {/* Input */}
-      <section className='mt-20'>
+      <section className='mt-14'>
         <h6 className='font-bold'>
           Select one category that best describes your Linktree:
         </h6>
@@ -46,7 +40,7 @@ const Personalize = () => {
           <Category />
         </div>
 
-        <Button className='mt-10 w-full rounded-full bg-white text-black font-bold border border-gray-500 hover:bg-purple-600 hover:text-white'>
+        <Button className='mt-6 w-full rounded-full bg-white text-black font-bold border border-gray-500 hover:bg-purple-600 hover:text-white'>
           <span>Continue</span>
         </Button>
       </section>
