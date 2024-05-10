@@ -21,7 +21,7 @@ const Pricing = () => {
   }
 
   return (
-    <div className=''>
+    <div className='px-6'>
       {/* Logo */}
       <div className='flex items-center justify-start m-6'>
         <h1 className='font-bold text-xl tracking-tight'>Linktree</h1>
@@ -37,8 +37,7 @@ const Pricing = () => {
       </div>
 
       {/* Plans */}
-      {/* <div className='mt-12 '> */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-12 '>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-12'>
         {pricings.map(
           ({
             title,
@@ -57,7 +56,6 @@ const Pricing = () => {
           )
         )}
       </div>
-      {/* </div> */}
     </div>
   );
 };
@@ -78,7 +76,7 @@ const Card = ({
   billingCycle: string;
 }) => {
   return (
-    <div className='border rounded-2xl max-w-[20rem]'>
+    <div className='border rounded-2xl max-w-[20rem] '>
       <p className='pt-8 pb-4 px-4'>
         <div className='flex justify-between'>
           <label
@@ -93,9 +91,9 @@ const Card = ({
       </p>
       <div className='flex flex-col border-t py-4 px-4'>
         <div>
-          <h6 className='font-bold tracking-tight text-sm'>{subHeading}</h6>
+          <h6 className='font-bold tracking-tight'>{subHeading}</h6>
           {/* Features */}
-          <ul className='space-y-2'>
+          <ul className='space-y-2 mt-4'>
             {features.map((feature: string) => (
               <li className='flex items-start space-x-2'>
                 <Check
@@ -110,9 +108,11 @@ const Card = ({
         </div>
 
         {/* footer - price */}
-        <div className='place-items-end'>
-          <h6 className='font-extrabold text-xl'>{price}</h6>
-          <h5 className='font-light'>{billingCycle}</h5>
+        <div className='place-items-end mt-6'>
+          <h6 className='font-extrabold text-xl tracking-tight'>{price}</h6>
+          <h5 className='text-sm font-light tracking-tighter text-gray-800'>
+            {billingCycle}
+          </h5>
         </div>
       </div>
     </div>
