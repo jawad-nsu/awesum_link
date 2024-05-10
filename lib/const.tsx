@@ -66,6 +66,7 @@ export const categories = [
 
 export const pricings = [
   {
+    id: 1,
     title: 'Free',
     subHeading: 'For your personal Linktree',
     features: ['Unlimited links'],
@@ -73,6 +74,7 @@ export const pricings = [
     billingCycle: 'Free, Forever',
   },
   {
+    id: 2,
     title: 'Starter',
     subHeading: 'For growing influencers',
     features: [
@@ -85,6 +87,7 @@ export const pricings = [
     billingCycle: 'Per month, billed annually, or $6 billed monthly',
   },
   {
+    id: 3,
     title: 'Pro',
     subHeading: 'For creators and businesses',
     features: [
@@ -99,6 +102,7 @@ export const pricings = [
     billingCycle: 'Per month, billed annually, or $10 billed monthly',
   },
   {
+    id: 4,
     title: 'Premium',
     subHeading: 'For brands and businesses',
     features: [
