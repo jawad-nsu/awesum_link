@@ -63,3 +63,51 @@ export const categories = [
     icon: <Plane size={14} />,
   },
 ];
+
+export const pricings = [
+  {
+    title: 'Free',
+    subHeading: 'For your personal Linktree',
+    features: ['Unlimited links'],
+    price: 'Free',
+    billingCycle: 'Free, Forever',
+  },
+  {
+    title: 'Starter',
+    subHeading: 'For growing influencers',
+    features: [
+      'Upgraded style options',
+      'Monetization support w/affiliate marketing tools',
+      'Scheduling',
+      'Audience insights',
+    ],
+    price: '$4 CAD',
+    billingCycle: 'Per month, billed annually, or $6 billed monthly',
+  },
+  {
+    title: 'Pro',
+    subHeading: 'For creators and businesses',
+    features: [
+      'Advanced customization of buttons, themes and fonts',
+      'Click, conversion and revenue tracking',
+      'Upgraded customer support',
+      'Option to hide Linktree logo',
+      'Social platform integrations to automatically display your lastest content',
+      'Multiple admins',
+    ],
+    price: '$7.50 CAD',
+    billingCycle: 'Per month, billed annually, or $10 billed monthly',
+  },
+  {
+    title: 'Premium',
+    subHeading: 'For brands and businesses',
+    features: [
+      'Dedicated customer success manager with 1-1 onboarding',
+      'Analytics: Export lifetime data',
+      'Access to exclusive webinars & best practice videos',
+      'Premium support, response within 4 hours',
+    ],
+    price: '$21 CAD',
+    billingCycle: 'Per month, billed annually, or $27 billed monthly',
+  },
+];
