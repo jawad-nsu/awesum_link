@@ -94,46 +94,63 @@ const Card = ({
   billingCycle: string;
 }) => {
   return (
-    <div className='border rounded-2xl max-w-[20rem] hover:cursor-pointer'>
-      {/* Header */}
-      <p className={cn('pt-8 pb-4 px-4')}>
-        <div className='flex justify-between'>
-          <label
-            htmlFor='pricing-starter'
-            className='font-extrabold text-xl leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-          >
-            {title}
-          </label>
-          <Checkbox className='border active:bg-white' id='pricing-starter' />
-        </div>
-        <h6 className='text-xs font-bold tracking-tights mt-3'>{subHeading}</h6>
-      </p>
+    <div>
+      <div className={cn(id == 3 ? 'text-center float' : 'hidden')}>
+        <h6 className=''>Recommended</h6>
+      </div>
+      <div
+        className={cn(
+          'border rounded-2xl max-w-[20rem] hover:cursor-pointer',
+          id == 3 ? 'border-purple-800' : ''
+        )}
+      >
+        {/* Header */}
+        <p
+          className={cn(
+            'pt-8 pb-4 px-4',
+            id == 3 ? 'bg-purple-800 rounded-t-xl text-white' : ''
+          )}
+        >
+          <div className='flex justify-between'>
+            <label
+              htmlFor='pricing-starter'
+              className='font-extrabold text-xl leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+            >
+              {title}
+            </label>
+            <Checkbox className='border active:bg-white' id='pricing-starter' />
+          </div>
+          <h6 className='text-xs font-bold tracking-tights mt-3'>
+            {subHeading}
+          </h6>
+        </p>
 
-      <div className='flex flex-col border-t py-4 px-4'>
-        {/* Features */}
-        <div>
-          <h6 className='font-bold tracking-tight'>{subHeading}</h6>
+        <div className='flex flex-col border-t py-4 px-4'>
           {/* Features */}
-          <ul className='space-y-2 mt-4'>
-            {features.map((feature: string) => (
-              <li className='flex items-start space-x-2'>
-                <Check
-                  size={18}
-                  className='flex-none mt-[0.25rem]'
-                  color='#8b5cf6'
-                />{' '}
-                <span className='text-gray-600 text-[.95rem]'>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <div>
+            <h6 className='font-bold tracking-tight'>{subHeading}</h6>
+            {/* Features */}
+            <ul className='space-y-2 mt-4'>
+              {features.map((feature: string) => (
+                <li key={feature} className='flex items-start space-x-2'>
+                  <Check
+                    size={18}
+                    className='flex-none mt-[0.25rem]'
+                    color='#8b5cf6'
+                  />{' '}
+                  <span className='text-gray-600 text-[.95rem]'>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Footer - price */}
-        <div className='place-items-end mt-10'>
-          <h6 className='font-extrabold text-xl tracking-tight'>{price}</h6>
-          <h5 className='text-sm font-light tracking-tighter text-gray-800'>
-            {billingCycle}
-          </h5>
+          {/* Footer - price */}
+          <div className='place-items-end mt-10'>
+            <h6 className='font-extrabold text-xl tracking-tight'>{price}</h6>
+            <h5 className='text-sm font-light tracking-tighter text-gray-800'>
+              {billingCycle}
+            </h5>
+          </div>
         </div>
       </div>
     </div>
