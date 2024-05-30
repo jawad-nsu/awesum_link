@@ -96,7 +96,7 @@ const Card = ({
   return (
     <div>
       <div className={cn(id == 3 ? 'text-center float' : 'hidden')}>
-        <h6 className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-200 text-green-700 rounded-full px-2 py-1 text-xs font-semibold'>
+        <h6 className='absolute top-[18rem] left-[59%] transform -translate-x-1/2 -translate-y-1/2 bg-green-200 text-green-700 rounded-full px-2 py-1 text-xs font-semibold recommended'>
           Recommended
         </h6>
       </div>
