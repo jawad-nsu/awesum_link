@@ -52,7 +52,7 @@ const Password = () => {
     // Handle form submission logic here
   };
   return (
-    <div className='max-w-[35rem] mx-auto space-y-6'>
+    <div className='max-w-[35rem] mx-auto space-y-6 px-6'>
       <div className=''>
         <Button className='text-purple-700 font-bold bg-white hover:bg-white p-0 m-0'>
           <ChevronLeft />

@@ -16,7 +16,6 @@ const MainLayout = ({ children }: Props) => {
           <h1 className='font-bold text-xl tracking-tight'>Linktree</h1>
           <SiLinktree size={16} className='text-green-500' />
         </div>
-
         {children}
       </section>
       {/* Image */}
