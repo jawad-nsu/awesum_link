@@ -41,7 +41,7 @@ const Pricing = () => {
 
         {/* Plans */}
         <div className=''>
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-12'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-stretch mt-12'>
             {pricings.map(
               ({
                 id,
@@ -68,7 +68,7 @@ const Pricing = () => {
         </div>
 
         {/* Button */}
-        <Button className='max-w-2xl w-full my-12 rounded-full bg-purple-600 hover:bg-purple-800 font-bold text-md py-6'>
+        <Button className='max-w-2xl w-full my-20 rounded-full bg-purple-600 hover:bg-purple-800 font-bold text-md py-6'>
           Continue
         </Button>
       </div>
@@ -94,16 +94,16 @@ const Card = ({
   billingCycle: string;
 }) => {
   return (
-    <div>
-      <div className={cn(id == 3 ? 'text-center float' : 'hidden')}>
-        <h6 className='absolute top-[18rem] left-[59%] transform -translate-x-1/2 -translate-y-1/2 bg-green-200 text-green-700 rounded-full px-2 py-1 text-xs font-semibold recommended'>
+    <div className={cn(id == 3 ? 'relative' : '')}>
+      <div className={cn(id == 3 ? '' : 'hidden')}>
+        <h6 className='absolute top-[-0.70rem] left-[33%] z-10 bg-[#d0e91f] text-green-900 rounded-full px-4 py-[0.25rem] text-xs font-bold'>
           Recommended
         </h6>
       </div>
       <div
         className={cn(
           'border rounded-2xl max-w-[20rem] hover:cursor-pointer',
-          id == 3 ? 'border-purple-800' : ''
+          id == 3 ? 'absolute top-0 left-0 z-0 border-purple-800' : ''
         )}
       >
         {/* Header */}
@@ -113,7 +113,7 @@ const Card = ({
             id == 3 ? 'bg-purple-800 rounded-t-xl text-white' : ''
           )}
         >
-          <div className='flex justify-between'>
+          <div className='flex items-stretch justify-between'>
             <label
               htmlFor='pricing-starter'
               className='font-extrabold text-xl leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
@@ -129,7 +129,7 @@ const Card = ({
 
         <div className='flex flex-col border-t py-4 px-4'>
           {/* Features */}
-          <div>
+          <div className='h-72'>
             <h6 className='font-bold tracking-tight'>{subHeading}</h6>
             {/* Features */}
             <ul className='space-y-2 mt-4'>
